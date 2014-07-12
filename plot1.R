@@ -3,7 +3,9 @@ file = read.table("household_power_consumption.txt",sep=";",header=TRUE,colClass
 
 #get data for specified days
 file<-file[file$Date=="1/2/2007" | file$Date=="2/2/2007",]
+file <- file[!is.na(file$Global_active_power),]
 
-png(filename="plot1.png",width=480,height=480,units="px") #creates png file, sets size
-hist(file$Global_active_power,col="red",xlab="Global Active Power (kilowatts)",main="Global Active Power") #creates histogram to put in the png file
+#create png file with histogram
+png(filename="plot1.png",width=480,height=480,units="px")
+hist(file$Global_active_power,col="red",xlab="Global Active Power (kilowatts)",main="Global Active Power")
 dev.off()
